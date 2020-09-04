@@ -11,7 +11,6 @@ var specChar = "!#$%&'()*+,-.:;=?@[]^_{|}~";
 var tempResult = "";
 var endResult = "";
 
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -29,23 +28,27 @@ function generatePassword() {
       return "Click button to try again.";
       // once if criteria is met, this sequence of confirm questions will kick off from asking the user which character types they would like to include in their password.
     } else {
-      var confirmUpCase = confirm("If you would like to include uppercase letters, click ok. If not, click cancel");
+      var confirmUpCase = confirm("If you would like to include uppercase letters, click OK. If not, click Cancel");
       if (confirmUpCase == true) {
         tempResult += upCase;
+        alert("Your password will include uppercase letters.");
       }
-      var confirmLowCase = confirm("If you would like to include lowercase letters, click ok. If not, click cancel");
+      var confirmLowCase = confirm("If you would like to include lowercase letters, click OK. If not, click Cancel");
       if (confirmLowCase == true) {
         tempResult += lowCase;
+        alert("Your password will include lowercase letters.");
       }
-      var confirmNumbers = confirm("If you would like to include numbers, click ok. If not, click cancel");
+      var confirmNumbers = confirm("If you would like to include numbers, click OK. If not, click Cancel");
       if (confirmNumbers == true) {
         tempResult += numbers;
+        alert("Your password will include numbers.");
       }
-      var confirmSpecChar = confirm("If you would like to include special characters, click ok. If not, click cancel");
+      var confirmSpecChar = confirm("If you would like to include special characters, click OK. If not, click Cancel");
       if (confirmSpecChar == true) {
         tempResult += specChar;
+        alert("Your password will include special characters.");
       }
-
+      
       // If the user does not select any character types this will notify them and return to the beginning of the process.      
       if (confirmUpCase == false && confirmLowCase == false && confirmNumbers == false && confirmSpecChar == false){
         alert("You must select at least one character type.");
@@ -54,20 +57,14 @@ function generatePassword() {
 
       // after the length and confirms have been successfully completed, this for loop with randomize the characters selected and combine them into the final password.
       for (var i = 0; i < pLength; i++) {
-        // console.log(pLength);
         var tempCharacters = Math.floor(Math.random() * tempResult.length);
-        // console.log(tempCharacters);
         var randomized = tempResult[tempCharacters];
-        // console.log(randomized);
         endResult = endResult + randomized;
-        // console.log(endResult);
-        
       }
     }
     // final return prints the generated password into the textarea.
     return endResult;
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
